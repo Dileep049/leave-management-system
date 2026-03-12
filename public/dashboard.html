@@ -2,96 +2,68 @@
 <html>
 <head>
   <title>Student Dashboard</title>
-  <style>
-    body {
-      font-family: Arial;
-      margin: 0;
-      background: #f4f6f8;
-    }
-    .nav {
-      background: #2c3e50;
-      color: white;
-      padding: 15px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-    .container {
-      padding: 40px;
-    }
-    .card {
-      background: white;
-      padding: 20px;
-      margin-top: 20px;
-      border-radius: 10px;
-      box-shadow: 0 0 5px gray;
-    }
-    a {
-      text-decoration: none;
-      color: white;
-      background: #3498db;
-      padding: 10px 15px;
-      border-radius: 5px;
-      display: inline-block;
-      margin-top: 10px;
-    }
-    .logout {
-      background: red;
-    }
-    .student-info {
-      background: white;
-      padding: 20px;
-      border-radius: 10px;
-      box-shadow: 0 0 5px gray;
-      margin-bottom: 20px;
-    }
-  </style>
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
 
-<div class="nav">
+<div class="dashboard">
+
+<!-- NAVBAR -->
+<div class="navbar">
   <h2>Student Dashboard</h2>
   <a class="logout" href="/logout">Logout</a>
 </div>
 
-<div class="container">
+<!-- STUDENT DETAILS -->
+<div class="student-info">
 
-  <!-- 🔹 STUDENT DETAILS -->
-  <div class="student-info">
-    <h3>Name: <span id="name"></span></h3>
-    <h3>Roll No: <span id="roll"></span></h3>
-    <h3>Branch: <span id="branch"></span></h3>
-  </div>
-
-  <!-- 🔹 APPLY LEAVE -->
-  <div class="card">
-    <h3>Apply Leave</h3>
-    <p>Click below to request leave.</p>
-    <a href="/apply-leave.html">Apply Now</a>
-  </div>
-
-  <!-- 🔹 VIEW HISTORY -->
-  <div class="card">
-    <h3>View Leave History</h3>
-    <p>Check your leave status here.</p>
-    <a href="/history.html">View History</a>
-  </div>
+<h3>Name : <span id="name"></span></h3>
+<h3>Roll No : <span id="roll"></span></h3>
+<h3>Branch : <span id="branch"></span></h3>
 
 </div>
 
-<!-- 🔹 SCRIPT MUST BE INSIDE BODY (LAST) -->
+<!-- ACTION CARDS -->
+
+<div class="cards">
+
+<div class="card">
+<h3>Apply Leave</h3>
+<p>Click below to request leave</p>
+<a href="/apply-leave.html">Apply Now</a>
+</div>
+
+<div class="card">
+<h3>View Leave History</h3>
+<p>Check your leave status</p>
+<a href="/history.html">View History</a>
+</div>
+
+</div>
+
+</div>
+
+
 <script>
+
 fetch("/student-data")
-  .then(res => res.json())
-  .then(data => {
-    if (data.error) {
-      window.location.href = "/login.html";
-    } else {
-      document.getElementById("name").innerText = data.name;
-      document.getElementById("roll").innerText = data.admission_no;
-      document.getElementById("branch").innerText = data.branch;
-    }
-  });
+.then(res => res.json())
+.then(data => {
+
+if(data.error){
+window.location.href="/login.html";
+return;
+}
+
+document.getElementById("name").innerText = data.name;
+document.getElementById("roll").innerText = data.admission_no;
+document.getElementById("branch").innerText = data.branch;
+
+});
+
 </script>
 
 </body>
