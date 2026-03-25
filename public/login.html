@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Student Login</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<div class="container">
+
+  <h3>Student Login</h3>
+
+  <p id="errorMsg"></p>
+
+  <form action="/student-login" method="POST">
+
+    <input type="text" name="admission_no" placeholder="ADMISSION NUMBER" required>
+
+    <button type="submit">Login</button>
+
+  </form>
+
+  <a href="/admin-login.html">Admin Login</a>
+
+</div>
+
+<script>
+const params = new URLSearchParams(window.location.search);
+
+if(params.get("error") === "invalid"){
+  document.getElementById("errorMsg").innerText = "Invalid Admission Number";
+}
+</script>
+
+</body>
+</html>

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Student Dashboard</title>
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<div class="dashboard">
+
+<!-- NAVBAR -->
+<div class="navbar">
+  <h2>Student Dashboard</h2>
+  <a class="logout" href="/logout">Logout</a>
+</div>
+
+<!-- STUDENT DETAILS -->
+<div class="student-info">
+
+<h3>Name : <span id="name"></span></h3>
+<h3>Roll No : <span id="roll"></span></h3>
+<h3>Branch : <span id="branch"></span></h3>
+
+</div>
+
+<!-- ACTION CARDS -->
+
+<div class="cards">
+
+<div class="card">
+<h3>Apply Leave</h3>
+<p>Click below to request leave</p>
+<a href="/apply-leave.html">Apply Now</a>
+</div>
+
+<div class="card">
+<h3>View Leave History</h3>
+<p>Check your leave status</p>
+<a href="/history.html">View History</a>
+</div>
+
+</div>
+
+</div>
+
+
+<script>
+
+fetch("/student-data")
+.then(res => res.json())
+.then(data => {
+
+if(data.error){
+window.location.href="/login.html";
+return;
+}
+
+document.getElementById("name").innerText = data.name;
+document.getElementById("roll").innerText = data.admission_no;
+document.getElementById("branch").innerText = data.branch;
+
+});
+
+</script>
+
+</body>
+</html>

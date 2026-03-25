@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Admin Dashboard</title>
+  <style>
+    body {
+      font-family: Arial;
+      margin: 0;
+      background: #f4f6f8;
+    }
+
+    .nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: #2c3e50;
+      padding: 15px;
+      color: white;
+    }
+
+    .logout {
+      color: white;
+      background: red;
+      padding: 8px 12px;
+      border-radius: 5px;
+      text-decoration: none;
+    }
+
+    table {
+      width: 95%;
+      margin: 30px auto;
+      border-collapse: collapse;
+      background: white;
+    }
+
+    th, td {
+      padding: 10px;
+      text-align: center;
+      border: 1px solid #ccc;
+    }
+
+    th {
+      background: #3498db;
+      color: white;
+    }
+
+    button {
+      padding: 5px 10px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    .approve {
+      background: green;
+      color: white;
+    }
+
+    .reject {
+      background: red;
+      color: white;
+    }
+  </style>
+</head>
+<body>
+
+<div class="nav">
+  <h2>Admin Dashboard</h2>
+  <a href="/logout" class="logout">Logout</a>
+</div>
+
+<h2 style="text-align:center;">All Leave Requests</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Name</th>
+      <th>Roll No</th>
+      <th>Branch</th>
+      <th>From</th>
+      <th>To</th>
+      <th>Reason</th>
+      <th>Status</th>
+      <th>Action</th>
+    </tr>
+  </thead>
+
+  <tbody id="adminTable"></tbody>
+</table>
+
+<script>
+async function loadLeaves() {
+  const res = await fetch("/admin-leaves");
+  const data = await res.json();
+
+  let rows = "";
+
+  data.forEach(leave => {
+    rows += `
+      <tr>
+        <td>${leave.id}</td>
+        <td>${leave.name}</td>
+        <td>${leave.admission_no}</td>
+        <td>${leave.branch}</td>
+        <td>${leave.from_date}</td>
+        <td>${leave.to_date}</td>
+        <td>${leave.reason}</td>
+        <td>${leave.status}</td>
+        <td>
+          <button class="approve" onclick="updateStatus(${leave.id}, 'Approved')">Approve</button>
+          <button class="reject" onclick="updateStatus(${leave.id}, 'Rejected')">Reject</button>
+        </td>
+      </tr>
+    `;
+  });
+
+  document.getElementById("adminTable").innerHTML = rows;
+}
+
+function updateStatus(id, status) {
+  fetch("/update-status", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ id, status })
+  })
+  .then(res => res.json())
+  .then(data => {
+    alert(data.message);
+    loadLeaves(); // refresh without reload
+  });
+}
+
+loadLeaves();
+</script>
+
+</body>
+</html>

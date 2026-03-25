@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Leave History</title>
+  <style>
+    body {
+      font-family: Arial;
+      background: #f4f6f8;
+      margin: 0;
+    }
+
+    .nav {
+      background: #2c3e50;
+      color: white;
+      padding: 15px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .container {
+      padding: 30px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      background: white;
+    }
+
+    th, td {
+      padding: 10px;
+      border: 1px solid #ccc;
+      text-align: center;
+    }
+
+    th {
+      background: #3498db;
+      color: white;
+    }
+
+    .approved {
+      color: green;
+      font-weight: bold;
+    }
+
+    .rejected {
+      color: red;
+      font-weight: bold;
+    }
+
+    .pending {
+      color: orange;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+
+<div class="nav">
+  <h2>My Leave History</h2>
+  <a href="/dashboard.html" style="color:white; text-decoration:none;">Back</a>
+</div>
+
+<div class="container">
+
+  <table>
+    <thead>
+      <tr>
+        <th>From Date</th>
+        <th>To Date</th>
+        <th>Reason</th>
+        <th>Status</th>
+      </tr>
+    </thead>
+    <tbody id="historyTable">
+    </tbody>
+  </table>
+
+</div>
+
+<script>
+fetch("/history-data")
+  .then(res => res.json())
+  .then(data => {
+    const tableBody = document.getElementById("historyTable");
+
+    if (!data || data.length === 0) {
+      tableBody.innerHTML = "<tr><td colspan='4'>No Leave Records Found</td></tr>";
+      return;
+    }
+
+    let rows = "";
+
+    data.forEach(leave => {
+
+      let statusClass = "";
+      if (leave.status === "Approved") {
+        statusClass = "approved";
+      } else if (leave.status === "Rejected") {
+        statusClass = "rejected";
+      } else {
+        statusClass = "pending";
+      }
+
+      rows += `
+        <tr>
+          <td>${leave.from_date}</td>
+          <td>${leave.to_date}</td>
+          <td>${leave.reason}</td>
+          <td class="${statusClass}">${leave.status}</td>
+        </tr>
+      `;
+    });
+
+    tableBody.innerHTML = rows;
+  })
+  .catch(error => {
+    console.log("Fetch Error:", error);
+  });
+</script>
+
+</body>
+</html>
