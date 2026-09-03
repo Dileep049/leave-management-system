@@ -33,36 +33,36 @@ export const LeaveHistory: React.FC = () => {
       </div>
 
       {/* Search & Filters */}
-      <div className="flex flex-col sm:flex-row gap-2.5 bg-white/[0.03] p-3 rounded-2xl border border-white/15 backdrop-blur-md shadow-lg">
+      <div className="flex flex-col sm:flex-row gap-2.5 bg-slate-900/60 p-3.5 rounded-2xl border border-white/20 backdrop-blur-xl shadow-xl">
         <div className="relative flex-1">
-          <Search className="w-4 h-4 text-slate-400 absolute left-3 top-2.5" />
+          <Search className="w-4 h-4 text-indigo-300 absolute left-3 top-2.5" />
           <input
             type="text"
             placeholder="Search by leave type or reason..."
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
-            className="w-full bg-white/[0.03] border border-white/10 rounded-xl pl-9 pr-4 py-2 text-xs text-white placeholder-slate-400 focus:outline-none focus:border-indigo-500 backdrop-blur-sm"
+            className="w-full bg-slate-950/80 border border-white/20 rounded-xl pl-9 pr-4 py-2 text-xs text-white font-semibold placeholder-slate-300 focus:outline-none focus:border-indigo-400 backdrop-blur-sm"
           />
         </div>
         <select
           value={statusFilter}
           onChange={(e) => setStatusFilter(e.target.value)}
-          className="bg-white/[0.03] border border-white/10 rounded-xl px-3 py-2 text-xs text-slate-200 focus:outline-none focus:border-indigo-500 backdrop-blur-sm"
+          className="bg-slate-950/80 border border-white/20 rounded-xl px-3.5 py-2 text-xs text-white font-semibold focus:outline-none focus:border-indigo-400 backdrop-blur-sm cursor-pointer"
         >
-          <option value="all" className="bg-slate-900 text-white">All Statuses</option>
-          <option value="pending_counsellor" className="bg-slate-900 text-white">Pending Counsellor</option>
-          <option value="pending_principal" className="bg-slate-900 text-white">Pending Principal</option>
-          <option value="approved" className="bg-slate-900 text-white">Approved</option>
-          <option value="rejected" className="bg-slate-900 text-white">Rejected</option>
+          <option value="all" className="bg-slate-950 text-white">All Statuses</option>
+          <option value="pending_counsellor" className="bg-slate-950 text-white">Pending Counsellor</option>
+          <option value="pending_principal" className="bg-slate-950 text-white">Pending Principal</option>
+          <option value="approved" className="bg-slate-950 text-white">Approved</option>
+          <option value="rejected" className="bg-slate-950 text-white">Rejected</option>
         </select>
       </div>
 
       {/* Leave List / Table */}
       {filteredLeaves.length === 0 ? (
-        <div className="bg-white/[0.03] border border-white/15 p-8 sm:p-12 rounded-2xl text-center space-y-3 backdrop-blur-md shadow-xl">
-          <FileText className="w-10 h-10 sm:w-12 sm:h-12 text-slate-500 mx-auto" />
-          <p className="text-slate-200 font-semibold text-sm">No leave records found</p>
-          <p className="text-xs text-slate-400 max-w-sm mx-auto">
+        <div className="bg-slate-900/60 border border-white/20 p-8 sm:p-12 rounded-2xl text-center space-y-3 backdrop-blur-xl shadow-2xl">
+          <FileText className="w-10 h-10 sm:w-12 sm:h-12 text-indigo-300 mx-auto" />
+          <p className="text-white font-bold text-base">No leave records found</p>
+          <p className="text-xs text-slate-200 max-w-sm mx-auto font-medium">
             You haven't submitted any leave applications matching your search filters yet.
           </p>
         </div>
@@ -71,51 +71,51 @@ export const LeaveHistory: React.FC = () => {
           {filteredLeaves.map((leave) => (
             <div
               key={leave.id}
-              className="bg-white/[0.03] border border-white/15 rounded-2xl p-4 sm:p-5 hover:border-white/25 backdrop-blur-md transition-all space-y-4 shadow-xl text-white"
+              className="bg-slate-900/65 border border-white/20 rounded-2xl p-4 sm:p-5 hover:border-indigo-400/50 backdrop-blur-xl transition-all space-y-4 shadow-2xl text-white"
             >
-              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-white/10 pb-3">
+              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-white/15 pb-3">
                 <div className="flex items-center gap-2 sm:gap-3 flex-wrap">
-                  <span className="px-2.5 py-1 rounded-lg bg-indigo-500/20 border border-indigo-500/30 text-indigo-300 text-xs font-bold">
+                  <span className="px-3 py-1 rounded-lg bg-indigo-600/30 border border-indigo-400/40 text-indigo-200 text-xs font-bold shadow-sm">
                     {leave.leaveType}
                   </span>
                   <StatusBadge status={leave.status} />
                 </div>
-                <span className="text-[11px] sm:text-xs text-slate-400">
+                <span className="text-xs font-bold text-slate-200 drop-shadow-sm">
                   Applied on {formatDateString(leave.appliedDate)}
                 </span>
               </div>
 
               <div className="grid grid-cols-1 md:grid-cols-3 gap-3 sm:gap-4 text-xs">
                 <div>
-                  <p className="text-slate-400 font-semibold uppercase tracking-wider text-[10px]">Leave Duration</p>
-                  <p className="text-white font-bold mt-1 flex items-center gap-1.5">
+                  <p className="text-indigo-200 font-extrabold uppercase tracking-wider text-[11px]">Leave Duration</p>
+                  <p className="text-white font-extrabold text-sm sm:text-base mt-1 flex items-center gap-1.5 drop-shadow-sm">
                     <Calendar className="w-4 h-4 text-indigo-400 shrink-0" />
                     {formatDateString(leave.fromDate)} → {formatDateString(leave.toDate)}
                   </p>
-                  <span className="text-[11px] text-indigo-300 font-semibold mt-0.5 inline-block">
+                  <span className="text-xs text-indigo-300 font-bold mt-1 inline-block">
                     Total: {leave.numberOfDays} {leave.numberOfDays === 1 ? 'day' : 'days'}
                   </span>
                 </div>
 
                 <div className="md:col-span-2">
-                  <p className="text-slate-400 font-semibold uppercase tracking-wider text-[10px]">Reason</p>
-                  <p className="text-slate-200 mt-1 leading-relaxed">{leave.reason}</p>
+                  <p className="text-indigo-200 font-extrabold uppercase tracking-wider text-[11px]">Reason</p>
+                  <p className="text-white font-semibold mt-1 leading-relaxed drop-shadow-sm">{leave.reason}</p>
                 </div>
               </div>
 
               {/* Counsellor & Principal Tracking Progress */}
-              <div className="p-3 sm:p-3.5 rounded-xl bg-white/[0.02] border border-white/10 grid grid-cols-1 sm:grid-cols-2 gap-2.5 sm:gap-3 text-xs">
+              <div className="p-3.5 rounded-xl bg-slate-950/80 border border-white/15 grid grid-cols-1 sm:grid-cols-2 gap-2.5 sm:gap-3 text-xs">
                 <div>
-                  <span className="text-[10px] sm:text-[11px] text-slate-400 font-semibold uppercase tracking-wider block">Ward Counsellor Status:</span>
-                  <p className="text-slate-200 font-medium mt-0.5">
+                  <span className="text-[11px] text-indigo-200 font-bold uppercase tracking-wider block">Ward Counsellor Status:</span>
+                  <p className="text-white font-bold mt-0.5">
                     {leave.counsellorName || 'Assigned Counsellor'}:{' '}
                     <span
                       className={
                         leave.counsellorStatus === 'approved'
-                          ? 'text-emerald-400 font-bold'
+                          ? 'text-emerald-400 font-extrabold'
                           : leave.counsellorStatus === 'rejected'
-                          ? 'text-rose-400 font-bold'
-                          : 'text-amber-400 font-bold'
+                          ? 'text-rose-400 font-extrabold'
+                          : 'text-amber-300 font-extrabold'
                       }
                     >
                       {leave.counsellorStatus === 'approved'
@@ -128,14 +128,14 @@ export const LeaveHistory: React.FC = () => {
                 </div>
 
                 <div>
-                  <span className="text-[10px] sm:text-[11px] text-slate-400 font-semibold uppercase tracking-wider block">Principal Final Decision:</span>
-                  <p className="text-slate-200 font-medium mt-0.5">
+                  <span className="text-[11px] text-indigo-200 font-bold uppercase tracking-wider block">Principal Final Decision:</span>
+                  <p className="text-white font-bold mt-0.5">
                     {leave.principalStatus === 'approved' ? (
-                      <span className="text-emerald-400 font-bold">Approved ✓</span>
+                      <span className="text-emerald-400 font-extrabold">Approved ✓</span>
                     ) : leave.principalStatus === 'rejected' ? (
-                      <span className="text-rose-400 font-bold">Rejected ✗</span>
+                      <span className="text-rose-400 font-extrabold">Rejected ✗</span>
                     ) : (
-                      <span className="text-slate-400 italic">Awaiting Principal</span>
+                      <span className="text-slate-300 font-bold italic">Awaiting Principal</span>
                     )}
                   </p>
                 </div>
@@ -143,10 +143,10 @@ export const LeaveHistory: React.FC = () => {
 
               {/* Rejection alert if applicable */}
               {leave.rejectionReason && (
-                <div className="p-3 rounded-xl bg-rose-950/60 border border-rose-500/30 text-xs text-rose-200 flex items-start gap-2">
-                  <AlertCircle className="w-4 h-4 text-rose-400 shrink-0 mt-0.5" />
+                <div className="p-3.5 rounded-xl bg-rose-950/90 border border-rose-500/50 text-xs text-rose-100 font-bold flex items-start gap-2 shadow-lg">
+                  <AlertCircle className="w-4 h-4 text-rose-300 shrink-0 mt-0.5" />
                   <div>
-                    <span className="font-bold">Rejection Reason: </span>
+                    <span className="font-extrabold text-white">Rejection Reason: </span>
                     {leave.rejectionReason}
                   </div>
                 </div>

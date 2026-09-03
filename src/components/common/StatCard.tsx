@@ -26,14 +26,14 @@ export const StatCard: React.FC<StatCardProps> = ({
   };
 
   return (
-    <div className="bg-white/[0.02] border border-white/10 rounded-2xl p-3 sm:p-3.5 shadow-xl backdrop-blur-sm text-white relative overflow-hidden transition-all hover:border-white/20 flex flex-col justify-between">
+    <div className="bg-slate-900/60 border border-white/20 rounded-2xl p-3.5 sm:p-4 shadow-2xl backdrop-blur-xl text-white relative overflow-hidden transition-all hover:border-indigo-400/50 flex flex-col justify-between">
       <div className="flex items-center justify-between gap-2">
         <div className="min-w-0">
-          <p className="text-[10px] font-bold uppercase tracking-wider text-slate-300 truncate">{title}</p>
-          <h3 className="mt-0.5 sm:mt-1 text-lg sm:text-xl font-black text-white tracking-tight leading-none">{value}</h3>
-          {subtitle && <p className="mt-0.5 text-[10px] text-slate-400 truncate">{subtitle}</p>}
+          <p className="text-[11px] font-extrabold uppercase tracking-wider text-indigo-300 truncate drop-shadow-sm">{title}</p>
+          <h3 className="mt-1 text-xl sm:text-2xl font-extrabold text-white tracking-tight leading-none drop-shadow-md">{value}</h3>
+          {subtitle && <p className="mt-1 text-xs text-slate-200 font-semibold truncate">{subtitle}</p>}
         </div>
-        <div className={`p-2 sm:p-2.5 rounded-xl shrink-0 ${iconBgMap[color]}`}>
+        <div className={`p-2.5 sm:p-3 rounded-xl shrink-0 ${iconBgMap[color]} shadow-md`}>
           <Icon className="w-4 h-4 sm:w-5 sm:h-5" />
         </div>
       </div>

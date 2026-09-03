@@ -78,18 +78,18 @@ export const Sidebar: React.FC<SidebarProps> = ({
       )}
 
       <aside
-        className={`fixed lg:static top-16 lg:top-0 bottom-0 left-0 w-64 bg-slate-950/90 lg:bg-white/[0.02] border-r border-white/10 backdrop-blur-sm z-50 transform transition-transform duration-300 ease-in-out flex flex-col justify-between overflow-y-auto shrink-0 shadow-xl ${
+        className={`fixed lg:static top-16 lg:top-0 bottom-0 left-0 w-64 bg-slate-950/90 lg:bg-slate-900/65 border-r border-white/20 backdrop-blur-xl z-50 transform transition-transform duration-300 ease-in-out flex flex-col justify-between overflow-y-auto shrink-0 shadow-2xl ${
           isOpen ? 'translate-x-0' : '-translate-x-full lg:translate-x-0'
         }`}
       >
         <div className="p-4 space-y-1">
           <div className="flex items-center justify-between px-3 mb-3">
-            <p className="text-[10px] font-bold uppercase tracking-wider text-white/50">
+            <p className="text-[10px] font-bold uppercase tracking-wider text-slate-300">
               Main Menu
             </p>
             <button 
               onClick={onClose}
-              className="lg:hidden text-white/70 hover:text-white p-1 rounded-lg hover:bg-white/10"
+              className="lg:hidden text-slate-300 hover:text-white p-1 rounded-lg hover:bg-white/10"
               aria-label="Close menu"
             >
               ✕
@@ -103,15 +103,15 @@ export const Sidebar: React.FC<SidebarProps> = ({
               <button
                 key={item.id}
                 onClick={() => handleSelect(item.id)}
-                className={`w-full flex items-center justify-between px-3.5 py-2.5 rounded-xl font-semibold text-xs transition-all ${
+                className={`w-full flex items-center justify-between px-3.5 py-2.5 rounded-xl font-bold text-xs transition-all ${
                   isActive
-                    ? 'bg-indigo-600/90 text-white shadow-lg shadow-indigo-600/30 backdrop-blur-sm'
-                    : 'text-white/70 hover:text-white hover:bg-white/10'
+                    ? 'bg-indigo-600 text-white shadow-lg shadow-indigo-600/40 backdrop-blur-md'
+                    : 'text-slate-200 hover:text-white hover:bg-white/15'
                 }`}
               >
                 <div className="flex items-center gap-3">
-                  <Icon className={`w-4 h-4 ${isActive ? 'text-white' : 'text-white/50'}`} />
-                  <span>{item.label}</span>
+                  <Icon className={`w-4 h-4 ${isActive ? 'text-white' : 'text-slate-300'}`} />
+                  <span className="drop-shadow-sm">{item.label}</span>
                 </div>
                 <ChevronRight className={`w-3.5 h-3.5 opacity-50 ${isActive ? 'block' : 'hidden'}`} />
               </button>

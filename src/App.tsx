@@ -159,8 +159,8 @@ const MainLayout: React.FC = () => {
             animation: 'activeRotate 15s ease-in-out infinite alternate'
           }}
         ></div>
-        {/* Very light overlay for crystal-clear 8K campus visibility */}
-        <div className="absolute inset-0 bg-slate-950/15 backdrop-blur-[1px]"></div>
+        {/* Darker translucent layer for 100% crisp text readability across all modules */}
+        <div className="absolute inset-0 bg-slate-950/55 backdrop-blur-[2px]"></div>
       </div>
 
       <style>{`

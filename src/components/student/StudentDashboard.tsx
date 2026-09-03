@@ -39,53 +39,53 @@ export const StudentDashboard: React.FC<StudentDashboardProps> = ({ setActiveTab
   return (
     <div className="space-y-3 sm:space-y-4">
       {/* 2. Transparent Glass Welcome / Profile Header Card */}
-      <div className="bg-white/[0.02] border border-white/10 rounded-2xl p-3.5 sm:p-4.5 shadow-xl backdrop-blur-sm text-white flex flex-col sm:flex-row sm:items-center justify-between gap-3">
-        <div className="space-y-0.5">
-          <div className="inline-flex items-center gap-1.5 text-[11px] font-semibold text-indigo-300">
-            <GraduationCap className="w-3.5 h-3.5" /> {studentProfile.branchName}
+      <div className="bg-slate-900/60 border border-white/20 rounded-2xl p-4 sm:p-5 shadow-2xl backdrop-blur-xl text-white flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+        <div className="space-y-1">
+          <div className="inline-flex items-center gap-1.5 text-xs font-bold text-indigo-300 drop-shadow-sm">
+            <GraduationCap className="w-4 h-4" /> {studentProfile.branchName}
           </div>
-          <h2 className="text-base sm:text-lg font-extrabold text-white leading-tight">Welcome, {studentProfile.studentName}</h2>
-          <p className="text-[11px] sm:text-xs text-slate-300">
-            Roll No: <span className="font-semibold text-white">{studentProfile.rollNumber}</span> • {studentProfile.year} ({studentProfile.semester}-{studentProfile.section})
+          <h2 className="text-base sm:text-xl font-extrabold text-white leading-tight drop-shadow-md">Welcome, {studentProfile.studentName}</h2>
+          <p className="text-xs text-slate-200 font-semibold drop-shadow-sm">
+            Roll No: <span className="font-extrabold text-white">{studentProfile.rollNumber}</span> • {studentProfile.year} ({studentProfile.semester}-{studentProfile.section})
           </p>
         </div>
 
         <button
           onClick={() => setIsApplyModalOpen(true)}
-          className="px-3.5 py-2 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white font-semibold text-xs shadow-md shadow-indigo-600/30 flex items-center justify-center gap-1.5 transition-all shrink-0 w-full sm:w-auto"
+          className="px-4 py-2.5 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white font-bold text-xs shadow-lg shadow-indigo-600/40 flex items-center justify-center gap-1.5 transition-all shrink-0 w-full sm:w-auto"
         >
-          <PlusCircle className="w-3.5 h-3.5" /> Apply For Leave
+          <PlusCircle className="w-4 h-4" /> Apply For Leave
         </button>
       </div>
 
       {/* 3. Transparent Glass Ward Counsellor Card */}
-      <div className="bg-white/[0.02] border border-white/10 rounded-2xl p-3 sm:p-3.5 shadow-xl backdrop-blur-sm text-white flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
+      <div className="bg-slate-900/60 border border-white/20 rounded-2xl p-4 shadow-2xl backdrop-blur-xl text-white flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
         <div className="flex items-center gap-3">
           {assignedCounsellor?.photoUrl ? (
             <img
               src={assignedCounsellor.photoUrl}
               alt={assignedCounsellor.name}
-              className="w-10 h-10 rounded-xl object-cover border border-white/20 shrink-0 shadow-sm"
+              className="w-11 h-11 rounded-xl object-cover border border-white/30 shrink-0 shadow-md"
             />
           ) : (
-            <div className="w-10 h-10 rounded-xl bg-white/10 text-sky-300 font-bold flex items-center justify-center text-base shrink-0 border border-white/15">
+            <div className="w-11 h-11 rounded-xl bg-indigo-600/30 text-sky-300 font-bold flex items-center justify-center text-lg shrink-0 border border-indigo-400/40">
               {assignedCounsellor?.name?.charAt(0) || 'C'}
             </div>
           )}
           <div className="min-w-0">
-            <span className="text-[10px] text-indigo-300 font-semibold uppercase tracking-wider block">ASSIGNED WARD COUNSELLOR</span>
-            <h4 className="text-xs sm:text-sm font-bold text-white mt-0.5 truncate">{assignedCounsellor?.name || 'Dr. Ananya Reddy'}</h4>
-            <p className="text-[11px] text-slate-300 truncate">{assignedCounsellor?.designation || 'Faculty Counsellor'}</p>
+            <span className="text-[11px] text-indigo-300 font-extrabold uppercase tracking-wider block drop-shadow-sm">ASSIGNED WARD COUNSELLOR</span>
+            <h4 className="text-xs sm:text-sm font-extrabold text-white mt-0.5 truncate drop-shadow-sm">{assignedCounsellor?.name || 'Dr. Ananya Reddy'}</h4>
+            <p className="text-xs text-slate-200 font-semibold truncate">{assignedCounsellor?.designation || 'Faculty Counsellor'}</p>
           </div>
         </div>
 
         {assignedCounsellor && (
-          <div className="flex flex-col sm:flex-row items-start sm:items-center gap-2 sm:gap-4 text-[11px] sm:text-xs text-slate-300 w-full sm:w-auto pt-2 sm:pt-0 border-t sm:border-t-0 border-white/10">
+          <div className="flex flex-col sm:flex-row items-start sm:items-center gap-2 sm:gap-4 text-xs text-slate-200 font-semibold w-full sm:w-auto pt-2 sm:pt-0 border-t sm:border-t-0 border-white/15">
             <span className="flex items-center gap-1.5 truncate">
-              <Mail className="w-3.5 h-3.5 text-slate-400 shrink-0" /> {assignedCounsellor.email}
+              <Mail className="w-3.5 h-3.5 text-indigo-300 shrink-0" /> {assignedCounsellor.email}
             </span>
             <span className="flex items-center gap-1.5 truncate">
-              <Phone className="w-3.5 h-3.5 text-slate-400 shrink-0" /> {assignedCounsellor.mobile}
+              <Phone className="w-3.5 h-3.5 text-indigo-300 shrink-0" /> {assignedCounsellor.mobile}
             </span>
           </div>
         )}
@@ -120,11 +120,11 @@ export const StudentDashboard: React.FC<StudentDashboardProps> = ({ setActiveTab
       </div>
 
       {/* 5. Transparent Glass Recent Requests Container */}
-      <div className="bg-white/[0.02] border border-white/10 rounded-2xl p-3.5 sm:p-4 shadow-xl backdrop-blur-sm text-white space-y-3">
+      <div className="bg-slate-900/60 border border-white/20 rounded-2xl p-4 sm:p-5 shadow-2xl backdrop-blur-xl text-white space-y-3">
         <div className="flex items-center justify-between gap-2">
           <div>
-            <h3 className="text-xs sm:text-sm font-bold text-white">Recent Leave Requests</h3>
-            <p className="text-[11px] text-slate-300">Latest applications and real-time approval status</p>
+            <h3 className="text-xs sm:text-sm font-extrabold text-white drop-shadow-sm">Recent Leave Requests</h3>
+            <p className="text-xs text-slate-200 font-semibold">Latest applications and real-time approval status</p>
           </div>
           <button
             onClick={() => setActiveTab('history')}
@@ -135,19 +135,19 @@ export const StudentDashboard: React.FC<StudentDashboardProps> = ({ setActiveTab
         </div>
 
         {myLeaves.length === 0 ? (
-          <div className="p-4 text-center border border-dashed border-white/15 rounded-xl">
-            <p className="text-xs text-slate-300">No leave applications submitted yet.</p>
+          <div className="p-4 text-center border border-dashed border-white/20 rounded-xl">
+            <p className="text-xs text-slate-200 font-semibold">No leave applications submitted yet.</p>
           </div>
         ) : (
-          <div className="divide-y divide-white/10">
+          <div className="divide-y divide-white/15">
             {myLeaves.slice(0, 3).map((leave) => (
               <div key={leave.id} className="py-2.5 flex flex-col sm:flex-row sm:items-center justify-between gap-2 sm:gap-3">
                 <div className="space-y-0.5">
                   <div className="flex items-center gap-2">
-                    <span className="text-xs font-bold text-white">{leave.leaveType}</span>
-                    <span className="text-[11px] text-slate-300">({leave.numberOfDays} days)</span>
+                    <span className="text-xs font-bold text-white drop-shadow-sm">{leave.leaveType}</span>
+                    <span className="text-xs text-indigo-200 font-bold">({leave.numberOfDays} days)</span>
                   </div>
-                  <p className="text-[11px] text-slate-300">
+                  <p className="text-xs text-slate-200 font-semibold">
                     {formatDateString(leave.fromDate)} → {formatDateString(leave.toDate)}
                   </p>
                 </div>

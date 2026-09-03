@@ -44,7 +44,7 @@ export const Login: React.FC = () => {
             animation: 'activeRotate 15s ease-in-out infinite alternate'
           }}
         ></div>
-        <div className="absolute inset-0 bg-slate-950/15 backdrop-blur-[1px]"></div>
+        <div className="absolute inset-0 bg-slate-950/55 backdrop-blur-[2px]"></div>
       </div>
 
       <style>{`
