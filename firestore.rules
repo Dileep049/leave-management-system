@@ -1,0 +1,72 @@
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+    
+    // Helper functions
+    function isAuthenticated() {
+      return request.auth != null;
+    }
+    
+    function getUserData() {
+      return get(/databases/$(database)/documents/users/$(request.auth.uid)).data;
+    }
+    
+    function isRole(role) {
+      return isAuthenticated() && getUserData().role == role;
+    }
+
+    function isBranchCounsellor(branchId) {
+      return isRole('ward_counsellor') && getUserData().branchId == branchId;
+    }
+
+    // 1. Users Collection Security Rules
+    match /users/{userId} {
+      allow read: if isAuthenticated();
+      allow write: if isRole('admin') || request.auth.uid == userId;
+    }
+
+    // 2. Students Collection Security Rules
+    match /students/{studentId} {
+      allow read: if isAuthenticated();
+      allow create, update, delete: if isRole('admin');
+    }
+
+    // 3. Ward Counsellors Collection Security Rules
+    match /wardCounsellors/{counsellorId} {
+      allow read: if isAuthenticated();
+      allow create, delete: if isRole('admin');
+      allow update: if isRole('admin') || (isRole('ward_counsellor') && resource.data.userId == request.auth.uid);
+    }
+
+    // 4. Branches Collection Security Rules
+    match /branches/{branchId} {
+      allow read: if isAuthenticated();
+      allow write: if isRole('admin');
+    }
+
+    // 5. Leave Applications Collection Security Rules
+    match /leaveApplications/{leaveId} {
+      allow read: if isAuthenticated() && (
+        isRole('admin') ||
+        isRole('principal') ||
+        resource.data.studentId == request.auth.uid ||
+        isBranchCounsellor(resource.data.branchId)
+      );
+      
+      allow create: if isRole('student') && request.resource.data.studentId == request.auth.uid;
+      
+      allow update: if isAuthenticated() && (
+        isRole('admin') ||
+        isRole('principal') ||
+        isBranchCounsellor(resource.data.branchId)
+      );
+    }
+
+    // 6. Notifications Collection Security Rules
+    match /notifications/{notifId} {
+      allow read, update: if isAuthenticated();
+      allow create: if isAuthenticated();
+    }
+  }
+}
