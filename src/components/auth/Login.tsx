@@ -38,13 +38,13 @@ export const Login: React.FC = () => {
       {/* 1. Fast Rotating & Moving 8K Background Image */}
       <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
         <div 
-          className="absolute inset-[-20%] w-[140%] h-[140%] bg-cover bg-center bg-no-repeat opacity-95"
+          className="absolute inset-[-20%] w-[140%] h-[140%] bg-cover bg-center bg-no-repeat opacity-100"
           style={{ 
-            backgroundImage: `url('https://images.unsplash.com/photo-1562774053-701939374585?auto=format&fit=crop&q=80&w=2560')`,
-            animation: 'activeRotate 10s ease-in-out infinite alternate'
+            backgroundImage: `url('/scenic-bg.jpg')`,
+            animation: 'activeRotate 15s ease-in-out infinite alternate'
           }}
         ></div>
-        <div className="absolute inset-0 bg-black/10"></div>
+        <div className="absolute inset-0 bg-slate-950/10 backdrop-blur-[1px]"></div>
       </div>
 
       <style>{`
@@ -56,7 +56,7 @@ export const Login: React.FC = () => {
       `}</style>
 
       {/* 2. Ultra-Transparent Glass Container */}
-      <div className="relative z-10 w-full max-w-5xl grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-8 items-center bg-white/[0.015] border border-white/10 rounded-3xl p-4 sm:p-6 lg:p-8 shadow-2xl backdrop-blur-sm">
+      <div className="relative z-10 w-full max-w-5xl grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-8 items-center bg-white/[0.03] border border-white/15 rounded-3xl p-4 sm:p-6 lg:p-8 shadow-2xl backdrop-blur-md">
         
         {/* Left Side: Login Form with Clear Glass */}
         <div className="bg-white/[0.02] border border-white/10 rounded-2xl p-4 sm:p-6 shadow-xl backdrop-blur-sm space-y-4 sm:space-y-5">
