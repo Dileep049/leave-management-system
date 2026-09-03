@@ -40,11 +40,11 @@ export const Login: React.FC = () => {
         <div 
           className="absolute inset-[-20%] w-[140%] h-[140%] bg-cover bg-center bg-no-repeat opacity-100"
           style={{ 
-            backgroundImage: `url('/scenic-bg.jpg')`,
+            backgroundImage: `url('/college-bg.jpg')`,
             animation: 'activeRotate 15s ease-in-out infinite alternate'
           }}
         ></div>
-        <div className="absolute inset-0 bg-slate-950/10 backdrop-blur-[1px]"></div>
+        <div className="absolute inset-0 bg-slate-950/15 backdrop-blur-[1px]"></div>
       </div>
 
       <style>{`

@@ -150,17 +150,17 @@ const MainLayout: React.FC = () => {
 
   return (
     <div className="relative min-h-screen bg-slate-950 overflow-hidden flex flex-col">
-      {/* 1. Background Scenic Image with Rotation & Ultra-Light Overlay */}
+      {/* 1. 8K College Campus Background Image with 3D Rotation */}
       <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
         <div 
           className="absolute inset-[-20%] w-[140%] h-[140%] bg-cover bg-center bg-no-repeat opacity-100"
           style={{ 
-            backgroundImage: `url('/scenic-bg.jpg')`,
+            backgroundImage: `url('/college-bg.jpg')`,
             animation: 'activeRotate 15s ease-in-out infinite alternate'
           }}
         ></div>
-        {/* Minimal overlay so the background image remains crystal clear */}
-        <div className="absolute inset-0 bg-slate-950/10 backdrop-blur-[1px]"></div>
+        {/* Very light overlay for crystal-clear 8K campus visibility */}
+        <div className="absolute inset-0 bg-slate-950/15 backdrop-blur-[1px]"></div>
       </div>
 
       <style>{`
