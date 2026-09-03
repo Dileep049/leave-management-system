@@ -153,14 +153,14 @@ const MainLayout: React.FC = () => {
       {/* 1. 8K College Campus Background Image with 3D Rotation */}
       <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
         <div 
-          className="absolute inset-[-20%] w-[140%] h-[140%] bg-cover bg-center bg-no-repeat opacity-100"
+          className="absolute inset-[-20%] w-[140%] h-[140%] bg-cover bg-center bg-no-repeat opacity-100 filter brightness-110 contrast-105"
           style={{ 
             backgroundImage: `url('/college-bg.jpg')`,
             animation: 'activeRotate 15s ease-in-out infinite alternate'
           }}
         ></div>
-        {/* Darker translucent layer for 100% crisp text readability across all modules */}
-        <div className="absolute inset-0 bg-slate-950/55 backdrop-blur-[2px]"></div>
+        {/* Light transparent tint for bright 8K background image light */}
+        <div className="absolute inset-0 bg-slate-950/25 backdrop-blur-[1px]"></div>
       </div>
 
       <style>{`
