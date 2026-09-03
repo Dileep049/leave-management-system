@@ -33,7 +33,7 @@ export const StudentProfileView: React.FC = () => {
 
   return (
     <div className="space-y-4 sm:space-y-6">
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 bg-black/20 border border-white/15 p-4 sm:p-6 rounded-2xl backdrop-blur-md">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 bg-white/[0.03] border border-white/15 p-4 sm:p-6 rounded-2xl backdrop-blur-md text-white shadow-xl">
         <div className="flex items-center gap-3 sm:gap-4">
           <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-2xl bg-indigo-600/20 border border-indigo-500/30 flex items-center justify-center text-indigo-300 text-xl sm:text-2xl font-black shrink-0">
             {studentProfile.studentName.charAt(0)}
@@ -50,7 +50,7 @@ export const StudentProfileView: React.FC = () => {
       </div>
 
       {/* Dynamic Ward Counsellor Information Card */}
-      <div className="bg-black/20 border border-white/15 p-4 sm:p-5 rounded-2xl space-y-4 backdrop-blur-md">
+      <div className="bg-white/[0.03] border border-white/15 p-4 sm:p-5 rounded-2xl space-y-4 backdrop-blur-md text-white shadow-xl">
         <div className="flex items-center justify-between">
           <h3 className="text-xs font-extrabold uppercase tracking-wider text-sky-400 flex items-center gap-2">
             <UserCheck className="w-4 h-4 shrink-0" /> Assigned Branch Ward Counsellor
@@ -99,7 +99,7 @@ export const StudentProfileView: React.FC = () => {
         {profileFields.map((field, idx) => {
           const Icon = field.icon;
           return (
-            <div key={idx} className="bg-black/20 border border-white/15 p-3.5 sm:p-4 rounded-xl flex items-center gap-3 backdrop-blur-md">
+            <div key={idx} className="bg-white/[0.03] border border-white/15 p-3.5 sm:p-4 rounded-xl flex items-center gap-3 backdrop-blur-md text-white shadow-lg">
               <div className="p-2.5 rounded-lg bg-white/10 text-indigo-300 shrink-0">
                 <Icon className="w-4 h-4" />
               </div>

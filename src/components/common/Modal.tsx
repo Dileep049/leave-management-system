@@ -50,9 +50,9 @@ export const Modal: React.FC<ModalProps> = ({
 
       {/* Modal Dialog */}
       <div
-        className={`relative w-full ${maxWidthClasses[maxWidth]} max-h-[90vh] bg-slate-900/95 border border-white/15 rounded-2xl shadow-2xl overflow-hidden z-10 my-auto flex flex-col backdrop-blur-xl`}
+        className={`relative w-full ${maxWidthClasses[maxWidth]} max-h-[90vh] bg-[#0c1424]/85 border border-white/15 rounded-2xl shadow-2xl overflow-hidden z-10 my-auto flex flex-col backdrop-blur-md`}
       >
-        <div className="flex items-center justify-between px-4 sm:px-6 py-3.5 sm:py-4 border-b border-white/10 bg-slate-900/80 shrink-0">
+        <div className="flex items-center justify-between px-4 sm:px-6 py-3.5 sm:py-4 border-b border-white/10 bg-white/[0.03] shrink-0">
           <h3 className="text-base sm:text-lg font-bold text-white tracking-tight truncate pr-2">{title}</h3>
           <button
             onClick={onClose}
